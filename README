@@ -1,4 +1,6 @@
+
 ko3-calendar is a calendar module for Kohana 3
+(fork from original github/tapvt/ko3-calendar)
 ----
 
 This module takes advantage of code originally written by David Walsh < http://davidwalsh.name > - Thanks David!
@@ -7,11 +9,20 @@ Documentation and usage examples will be forthcoming.
 
 Public testing, use, and development is encouraged, but test thoroughly for any critical applications.
 
+
+The output:
+An HTML calendar w/ linked events. Style to taste.
+
+
+---
+Dimon.bat
+---
+
 The function:
-fetchCalendar($events)
+fetchCalendar()
 
 The structure of $events[]:
 $events['$eventDayOfMonth'] = array( 'url' => $eventUrl, 'title' => $eventTitle );
 
-The output:
-An HTML calendar w/ linked events. Style to taste.
+events does not tested
+
