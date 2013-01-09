@@ -1,55 +1,9 @@
 <?php
-$headings = array('Mon','Tue','Wed','Thu','Fri','Sat','Sun');
 
-
-$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
-$calendar .= '<tr class="calendar-row"><td class="calendar-day-head">'.implode('</td><td class="calendar-day-head">',$headings).'</td></tr>';
-foreach($days as $line){
-	$calendar .='<tr class="calendar-row">';
-
-	foreach($line as $item)
-	{
-		if ( $item == '' )
-		{
-			//выводим несуществующий день
-			$calendar .= '<td class="calendar-day-np">&nbsp;</td>';
-		}
-		else
-		{
-			//выводим число
-			$calendar .= '<td class="calendar-day">';
-			if( (isset ($day_link_base) ) AND ( $day_link_base != '') ) {
-				// if we want to link to a "daily" view of 
-				$calendar .= '<div class="day-number"><a href="'.$day_link_base.'?date=' . $year.'_'.$month.'_'.$list_day.'">'.$item.'</a></div>';
-				}
-			else {
-				$calendar .= '<div class="day-number">'.$item.'</div>';
-			}
-			if(isset($events[$item])) {
-					$calendar .= '<div class="event">';
-					if( isset($events[$item]['detail']) ){
-						$calendar.= "<b>".$events[$item]['detail']."</b> - ";
-						}
-						$calendar .= '<a href="'.$events[$item]['url'].'" '.( isset($events[$item]['class']) ? 'class="' . $events[$item]['class'] .'"' : '' ).'>'.$events[$item]['title'].'</a>';
-						$calendar .= '</div>';
-						}
-			$calendar .= '</td>';
-		}
-	}
-	$calendar .= '</tr>';
-}
-
-
-//print_r ($ccontent);
-//exit(0);
-$calendar .= '</table>';
-echo $calendar;
-
-
-
-//echo controls
 $month = (int) (@$_GET['month'] ? $_GET['month'] : date('m'));
 $year = (int)  (@$_GET['year'] ? $_GET['year'] : date('Y'));
+
+//echo controls
 
 /* select month control */
 $select_month_control = '<select name="month" id="month">';
@@ -76,6 +30,54 @@ $next_month_link = '<a href="?month='.($month != 12 ? $month + 1 : 1).'&year='.(
 $controls = '<form method="get">'.$select_month_control.$select_year_control.'&nbsp;<input type="submit" name="submit" value="Go" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$previous_month_link.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$next_month_link.' </form>';
 
 echo $controls;
+
+
+
+//echo calendar
+$headings = array('Mon','Tue','Wed','Thu','Fri','Sat','Sun');
+
+$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
+$calendar .= '<tr class="calendar-row"><td class="calendar-day-head">'.implode('</td><td class="calendar-day-head">',$headings).'</td></tr>';
+foreach($days as $line){
+	$calendar .='<tr class="calendar-row">';
+
+	foreach($line as $item)
+	{
+		if ( $item == '' )
+		{
+			//выводим несуществующий день
+			$calendar .= '<td class="calendar-day-np">&nbsp;</td>';
+		}
+		else
+		{
+			//выводим число
+			$calendar .= '<td class="calendar-day">';
+			if( (isset ($day_link_base) ) AND ( $day_link_base != '') ) {
+				// if we want to link to a "daily" view of 
+				$calendar .= '<div class="day-number"><a href="'.$day_link_base.'?date=' . $year.'_'.$month.'_'.$item.'">'.$item.'</a></div>';
+				}
+			else {
+				$calendar .= '<div class="day-number">'.$item.'</div>';
+			}
+			if(isset($events[$item])) {
+					$calendar .= '<div class="event">';
+					if( isset($events[$item]['detail']) ){
+						$calendar.= "<b>".$events[$item]['detail']."</b> - ";
+						}
+						$calendar .= '<a href="'.$events[$item]['url'].'" '.( isset($events[$item]['class']) ? 'class="' . $events[$item]['class'] .'"' : '' ).'>'.$events[$item]['title'].'</a>';
+						$calendar .= '</div>';
+						}
+			$calendar .= '</td>';
+		}
+	}
+	$calendar .= '</tr>';
+}
+
+
+//print_r ($ccontent);
+//exit(0);
+$calendar .= '</table>';
+echo $calendar;
 
 
 ?>
