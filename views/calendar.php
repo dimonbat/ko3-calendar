@@ -26,15 +26,13 @@ foreach($days as $line){
 				$calendar .= '<div class="day-number">'.$item.'</div>';
 			}
 			if(isset($events[$item])) {
-				foreach($events[$item] as $event) {
 					$calendar .= '<div class="event">';
-					if( isset($event['detail']) ){
-						$calendar.= "<b>".$event['detail']."</b> - ";
+					if( isset($events[$item]['detail']) ){
+						$calendar.= "<b>".$events[$item]['detail']."</b> - ";
 						}
-						$calendar .= '<a href="'.$event['url'].'" '.( isset($event['class']) ? 'class="' . $event['class'] .'"' : '' ).'>'.$event['title'].'</a>';
+						$calendar .= '<a href="'.$events[$item]['url'].'" '.( isset($events[$item]['class']) ? 'class="' . $events[$item]['class'] .'"' : '' ).'>'.$events[$item]['title'].'</a>';
 						$calendar .= '</div>';
 						}
-					}
 			$calendar .= '</td>';
 		}
 	}
