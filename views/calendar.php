@@ -1,5 +1,5 @@
 <?php
-$headings = array('Mo','Tu','We','Th','Fr','Sa','Su');
+$headings = array('Mon','Tue','Wed','Thu','Fri','Sat','Sun');
 
 
 $calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
