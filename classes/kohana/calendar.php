@@ -52,10 +52,13 @@ class Kohana_Calendar
                 $y++;
             }
         endfor;
-            
-        for ($i = $x; $i <= 7; $i++):
-            $days[$y][$i] = '';
-        endfor;
+        
+        if ( $x != 1 )
+        {
+            for ($i = $x; $i <= 7; $i++):
+                $days[$y][$i] = '';
+            endfor;
+        }
 
 
        	
