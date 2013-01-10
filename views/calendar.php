@@ -2,6 +2,13 @@
 
 $month = (int) (@$_GET['month'] ? $_GET['month'] : date('m'));
 $year = (int)  (@$_GET['year'] ? $_GET['year'] : date('Y'));
+$day = (int)  (@$_GET['day'] ? $_GET['day'] : date('d'));
+$today_flag = '0';
+if ( ( $month == date('m') ) AND ( $year == date('Y') ) ) {
+	$today_flag = '1';
+	};
+$today = date('d');
+
 
 //echo controls
 
@@ -51,13 +58,18 @@ foreach($days as $line){
 		else
 		{
 			//выводим число
-			$calendar .= '<td class="calendar-day">';
-			if( (isset ($day_link_base) ) AND ( $day_link_base != '') ) {
+			if ( ( $today_flag == '1') AND ( $item == $today ) ){
+				$calendar .= '<td class="day-today">';
+			}
+			else {
+				$calendar .= '<td class="calendar-day">';
+			}
+			if ( (isset ($day_link_base) ) AND ( $day_link_base != '') ) {
 				// if we want to link to a "daily" view of 
 				$calendar .= '<div class="day-number"><a href="'.$day_link_base.'?date=' . $year.'_'.$month.'_'.$item.'">'.$item.'</a></div>';
 				}
 			else {
-				$calendar .= '<div class="day-number">'.$item.'</div>';
+					$calendar .= '<div class="day-number">'.$item.'</div>';
 			}
 			if(isset($events[$item])) {
 					$calendar .= '<div class="event">';
@@ -74,8 +86,6 @@ foreach($days as $line){
 }
 
 
-//print_r ($ccontent);
-//exit(0);
 $calendar .= '</table>';
 echo $calendar;
 
