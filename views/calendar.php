@@ -66,7 +66,7 @@ foreach($days as $line){
 			}
 			if ( (isset ($day_link_base) ) AND ( $day_link_base != '') ) {
 				// if we want to link to a "daily" view of 
-				$calendar .= '<div class="day-number"><a href="'.$day_link_base.'?date=' . $year.'_'.$month.'_'.$item.'">'.$item.'</a></div>';
+				$calendar .= '<div class="day-number"><a href="'.$day_link_base.'?year=' . $year.'&month='.$month.'&day='.$item.'">'.$item.'</a></div>';
 				}
 			else {
 					$calendar .= '<div class="day-number">'.$item.'</div>';
